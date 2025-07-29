@@ -1,1 +1,65 @@
+import time
+import random
 
+print("\nWelcome to guess my favourite number")
+time.sleep(1)
+print("\nToday we are guessing my favourite number")
+time.sleep(4)
+print("\nMy favourtie number is between 1 and 20")
+time.sleep(5)
+print("\nYou have 5 guesses GOOD LUCK!")
+time.sleep(2)
+
+Number = []
+
+play_again = "true"
+
+def play():
+    for i in range(5):
+        while play_again == "true":
+            try:
+                user_input = int(input(f"\nEnter guess {i+1} (between 1-20): "))
+                if 1 <= user_input <= 20:
+                    Number.append(user_input)
+                    break
+                else:
+                    print("\nPick a number between 1 and 20, please!")
+            except ValueError:
+                print("\nPlease enter a whole number.")
+
+play()
+
+def check():
+    mr_hartil = random.randint(1,20)
+    time.sleep(1)
+    print("\nPlease wait!")
+    time.sleep(3)
+    print("\nNow checking your guesses...")
+    time.sleep(2.5)
+    print("\nMR HARTILL'S FAVOURITE NUMBER WAS",mr_hartil)
+    time.sleep(2)
+    for i in range(5):
+        if Number[i] == mr_hartil:
+            print("\nYour guess number",i+1,"IS CORRECT")
+            time.sleep(1.5)
+        else:
+            print("\nYour guess number",i+1,"is incorrect")
+            time.sleep(1.5)
+
+check()
+
+def play_agan():
+    while True:
+        play_again = str(input("\nType 'True' to play again and 'False' to reject: ")).strip().lower()
+        if play_again == "true":
+            play()
+            check()
+            play_agan()
+            break
+        elif play_again == "false":
+            print("\nThank you for playing bye!")
+            break
+        else:
+            print("\nPlease pick 'True' OR 'False'")
+
+play_agan()
